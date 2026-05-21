@@ -22,6 +22,10 @@ dependencies = [
     "yt-dlp>=2026.3.17",
 ]
 
+[project.urls]
+Homepage = "https://github.com/kouhxp/yapsnap"
+Issues = "https://github.com/kouhxp/yapsnap/issues"
+
 [project.scripts]
 yapsnap = "yapsnap:main"
 transcribe = "yapsnap:main"
