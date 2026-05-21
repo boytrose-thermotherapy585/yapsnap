@@ -27,8 +27,8 @@ That's it. You get a `.txt` next to your shell, transcribed on your CPU, in less
 
 ```bash
 # 1. ffmpeg on PATH (one-time, per OS — see below)
-# 2. Install
-pip install .
+# 2. Install (from PyPI, or `pip install .` from a clone)
+pip install yapsnap
 
 # 3. Snap something
 yapsnap https://www.tiktok.com/@user/video/7234567890123456789
@@ -69,7 +69,17 @@ Plus any local file ffmpeg can decode: `.mp3`, `.mp4`, `.m4a`, `.wav`, `.webm`, 
 
 ### 2. yapsnap
 
+From PyPI (recommended):
+
 ```bash
+pip install yapsnap
+```
+
+From source:
+
+```bash
+git clone https://github.com/kouhxp/yapsnap
+cd yapsnap
 pip install .
 ```
 
